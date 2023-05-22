@@ -17,6 +17,13 @@ Docker compose é uma forma rápida de criar ambientes docker/ containers.
 
 OBS: Esse projeto usa imagens seguras, pode ser verificado em ./Dockerfile e ./docker-compose.yaml .
 
+### Com poetry
+O poetry é um gerenciador de dependências python.
+Para instalar, recomendo usar:
+```shell
+  # instala poetry
+$ pipx install poetry
+```
+
 ## Sobre o projeto
 O template base desse projeto foi tirado do meu repositório [modelo_rapido_djavue](https://github.com/Ronald-ps/modelo_rapido_djavue).
-
