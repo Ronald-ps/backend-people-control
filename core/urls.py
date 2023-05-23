@@ -8,5 +8,6 @@ router.register(r'company', viewsets.CompanyViewSet ,basename="company")
 
 urlpatterns = [
     path("hello-word", views.hello_world, name="hello_world"),
+    path("login", views.login_view),
     path("", include(router.urls)),
 ]
