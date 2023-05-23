@@ -15,11 +15,17 @@ django-cors-headers = "^3.14.0"
 
 [tool.poetry.group.dev.dependencies]
 ruff = "^0.0.269"
+black = "^23.3.0"
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
+[tool.black]
+line-length = 120
+extend-exclude = ["core/migrations"]
+
 [tool.ruff]
 line-length = 120
 extend-exclude = ["core/migrations"]
+target-version = "py311"
