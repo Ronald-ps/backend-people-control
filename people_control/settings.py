@@ -16,7 +16,7 @@ from pathlib import Path
 from dotenv import load_dotenv
 
 load_dotenv(".env")
-
+ENVIRONMENT = os.getenv("ENVIRONMENT", "production")
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -51,6 +51,9 @@ INSTALLED_APPS = [
     "corsheaders",
     "core",
 ]
+if ENVIRONMENT == "development":
+    INSTALLED_APPS.append("dev")
+
 
 MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",

@@ -23,5 +23,5 @@ class SoftDeleteBaseModel(models.Model):
     is_deleted = models.BooleanField(default=False, db_index=True)
 
     def delete(self):
-        self.is_deleted = False
+        self.is_deleted = True
         self.save(update_fields=["is_deleted"])
