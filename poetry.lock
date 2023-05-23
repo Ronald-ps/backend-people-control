@@ -127,6 +127,21 @@ files = [
 Django = ">=3.2"
 
 [[package]]
+name = "model-bakery"
+version = "1.11.0"
+description = "Smart object creation facility for Django."
+category = "dev"
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "model_bakery-1.11.0-py3-none-any.whl", hash = "sha256:d38a72502979be20c9c5c2b1682faefde9da4eae935c028cc35832d484ea1039"},
+    {file = "model_bakery-1.11.0.tar.gz", hash = "sha256:d516d93315f66fc7f2cef0a85e1ca9e1ebb656cca5e383f17127f023b4bbdb8c"},
+]
+
+[package.dependencies]
+django = ">=3.2"
+
+[[package]]
 name = "mypy-extensions"
 version = "1.0.0"
 description = "Type system extensions for programs checked with the mypy type checker."
@@ -252,4 +267,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "5c51c43724799a060d641651e13e054128f489fbe8eb6bebe353ebac861243fb"
+content-hash = "7e6e6296091d5905bf8d79f5d1cb8f0fde11c27e68f15eff5c7e4debded178f7"

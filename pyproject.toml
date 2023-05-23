@@ -16,6 +16,7 @@ django-cors-headers = "^3.14.0"
 [tool.poetry.group.dev.dependencies]
 ruff = "^0.0.269"
 black = "^23.3.0"
+model-bakery = "^1.11.0"
 
 [build-system]
 requires = ["poetry-core"]
