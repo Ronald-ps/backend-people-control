@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "djavue"
+name = "people_control"
 version = "0.1.0"
 description = "Um pacote rápido de depêndencias para um projeto com django e vuejs"
 authors = ["Ronald Seabra <git.ronaldseabra@gmail.com>"]
