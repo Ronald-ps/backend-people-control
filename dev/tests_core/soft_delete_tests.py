@@ -33,3 +33,11 @@ def test_no_delete_soft_delete_from_reverse_relation_model(activity_company):
     activity_company.employees.all().delete()
     employee.refresh_from_db()
     assert not employee.is_active
+
+
+def test_soft_delete_in_cascade_deletion(activity_company):
+    employee = make("core.Employee", company=activity_company)
+    breakpoint()
+    activity_company.delete()
+    employee.refresh_from_db()
+    assert not employee.is_active
