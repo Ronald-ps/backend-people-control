@@ -5,11 +5,17 @@
 from django.db import models
 
 class SoftDeleteQuerySet(models.QuerySet):
+    """
+        Sobrescreve o comportamento padrão de deleção a partir de um QuerySet
+    """
     def delete(self):
         self.update(is_active=False)
 
 
 class SoftDeleteManager(models.Manager):
+    """
+        Manager para não retornar multas deletadas em consultas normais
+    """
     def get_queryset(self) -> SoftDeleteQuerySet:
         return SoftDeleteQuerySet(self.model, using=self._db).exclude(is_active=False)
 
@@ -18,7 +24,19 @@ class SoftDeleteManager(models.Manager):
 
 
 class SoftDeleteBaseModel(models.Model):
-    """ Base model that implements soft delete logic """
+    """
+        Classe base abstrata para sobrescrever o comportamento de instance.delete().
+
+        Exemplos:
+            class MyModel(SoftDeleteModel):
+                pass
+
+            >>> my_model = MyModel()
+            >>> my_model.delete()
+            >>> my_model.refresh_from_db()
+            >>> my_model.is_active
+            True
+    """
     class Meta:
         abstract = True
     objects = SoftDeleteManager()
