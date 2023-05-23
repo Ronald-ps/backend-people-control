@@ -17,6 +17,7 @@ django-cors-headers = "^3.14.0"
 ruff = "^0.0.269"
 black = "^23.3.0"
 model-bakery = "^1.11.0"
+pytest-django = "^4.5.2"
 
 [build-system]
 requires = ["poetry-core"]
@@ -30,3 +31,8 @@ extend-exclude = ["core/migrations"]
 line-length = 120
 extend-exclude = ["core/migrations"]
 target-version = "py311"
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "people_control.settings"
+# -- recommended but optional:
+python_files = ["test_*.py", "*_test.py","*_tests.py", "testing/python/*.py"]
