@@ -34,13 +34,10 @@ def login_view(request):
 
 # Eu podia fazer isso com o drf, mas preferi usar um tiquin do padrão do
 # django, afinal, isso é um teste, neh?
-@api_view()
+@api_view(http_method_names=['GET'])
 @login_required()
 def company_simple_list(request):
     """ Paginação simples de empresas """
-    if request.method != "GET":
-        return HttpResponseNotAllowed(["GET", "Method not allowed"])
-
     page_number = request.GET.get("page", 1)
     defaultor_paginator = 10
     companies = get_companies_by_employees_num()

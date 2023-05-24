@@ -1,3 +1,5 @@
+from http import HTTPStatus
+from http.client import METHOD_NOT_ALLOWED
 import json
 
 from model_bakery.baker import make
@@ -25,3 +27,11 @@ def test_company_simple_list(db, rf, user):
     ]
   }
   assert response_content == expected_response
+
+# TODO: setar um setup de banco de dados para ser usado o mesmo banco de dados.
+# recriar um banco de dados é custoso
+def test_company_simple_list_invalide_request(db, rf, user):
+  request = rf.post("/company/simple-list", {})
+  request.user = user
+  response = company_simple_list(request)
+  assert response.status_code == HTTPStatus.FORBIDDEN
