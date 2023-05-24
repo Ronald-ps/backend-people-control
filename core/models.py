@@ -9,7 +9,9 @@ class User(AbstractUser):
 
 
 class Company(SoftDeleteBaseModel):
+    """ Modelo de empresa válido para o Brasil """
     # TODO: empresas de outros países não tem cnpj. Tem de ser null=True
+    name = models.TextField()
     cnpj = models.CharField(max_length=14, unique=True)
     cep = models.CharField(max_length=8)
     address = models.CharField(max_length=255)
