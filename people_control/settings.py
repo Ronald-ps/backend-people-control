@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     # ------
+    "rest_framework",
     "corsheaders",
     "core",
 ]
@@ -146,3 +147,12 @@ CORS_ORIGIN_ALLOW_ALL = False
 CORS_ORIGIN_WHITELIST = (os.getenv("FRONTEND_ORIGIN", "http://localhost:3000"),)
 
 AUTH_USER_MODEL = "core.User"
+
+# DRF (DJANGO REST FRAMEWORK)
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}

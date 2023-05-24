@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "djavue"
+name = "people_control"
 version = "0.1.0"
 description = "Um pacote rápido de depêndencias para um projeto com django e vuejs"
 authors = ["Ronald Seabra <git.ronaldseabra@gmail.com>"]
@@ -11,6 +11,7 @@ python = "^3.11"
 django = "^4.2"
 python-dotenv = "^1.0.0"
 django-cors-headers = "^3.14.0"
+djangorestframework = "^3.14.0"
 
 
 [tool.poetry.group.dev.dependencies]
