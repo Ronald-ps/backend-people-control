@@ -12,7 +12,7 @@ class CompanyViewSet(viewsets.ModelViewSet):
     This viewset automatically provides `list`, `create`, `retrieve`,
     `update` and `destroy` actions.
     """
-    queryset = Company.objects.all()
+    queryset = Company.objects.all().prefetch_related('employees')
     serializer_class = CompanySerializer
     permission_classes = [permissions.IsAuthenticated]
 
@@ -22,7 +22,7 @@ class DepartmentViewSet(viewsets.ModelViewSet):
     This viewset automatically provides `list`, `create`, `retrieve`,
     `update` and `destroy` actions.
     """
-    queryset = Department.objects.all()
+    queryset = Department.objects.all().prefetch_related('employees')
     serializer_class = DepartmentSerializer
     permission_classes = [permissions.IsAuthenticated]
 
