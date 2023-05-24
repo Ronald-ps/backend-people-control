@@ -19,6 +19,11 @@ class Company(SoftDeleteBaseModel):
     state_acronym = models.CharField(max_length=2)
     country = models.CharField(max_length=100)
 
+    def simple_to_dict_json(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+        }
 
 class Department(SoftDeleteBaseModel):
     company = models.ForeignKey(Company, on_delete=models.CASCADE, related_name="departments")

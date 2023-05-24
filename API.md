@@ -32,3 +32,11 @@ export const defaultBackendHttpClient = axios.create({
   timeout: 60000,
 });
 ```
+
+## Endpoints
+- `/login`
+> methods: ["POST"]
+> *Faz login com base na senha e usuários passados.*
+>> Parâmetros:
+>> - username: str
+>> - password: str

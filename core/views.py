@@ -1,7 +1,12 @@
 from http import HTTPStatus
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
 from django.http import HttpResponseNotAllowed, JsonResponse
+from rest_framework.decorators import api_view
 
+from core.models import Company
+from core.services.company_service import get_companies_by_employees_num
 
 
 def hello_world(request):
@@ -25,3 +30,23 @@ def login_view(request):
 
     login(request, user)
     return JsonResponse({'success': True, 'message': 'Login success.'})
+
+
+# Eu podia fazer isso com o drf, mas preferi usar um tiquin do padrão do
+# django, afinal, isso é um teste, neh?
+@api_view()
+@login_required()
+def company_simple_list(request):
+    """ Paginação simples de empresas """
+    if request.method != "GET":
+        return HttpResponseNotAllowed(["GET", "Method not allowed"])
+
+    page_number = request.GET.get("page", 1)
+    defaultor_paginator = 10
+    companies = get_companies_by_employees_num()
+    companies_paginated = Paginator(companies, defaultor_paginator).get_page(page_number)
+    return JsonResponse({
+        "companies": [
+            company.simple_to_dict_json() for company in companies_paginated.object_list
+        ]
+    })
