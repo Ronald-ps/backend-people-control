@@ -31,3 +31,8 @@ def test_login_view_invalid_user(client, user_data):
 def test_login_view_invalid_method(client):
     response = client.get("/login")
     assert response.status_code == HTTPStatus.METHOD_NOT_ALLOWED
+
+
+def test_hello_word(client):
+    r = client.get("/hello-word")
+    assert r.status_code == HTTPStatus.UNAUTHORIZED
