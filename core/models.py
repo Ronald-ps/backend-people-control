@@ -14,6 +14,7 @@ class Company(SoftDeleteBaseModel):
     cep = models.CharField(max_length=8)
     address = models.CharField(max_length=255)
     city = models.CharField(max_length=100)
+    state_acronym = models.CharField(max_length=2)
     country = models.CharField(max_length=100)
 
 
