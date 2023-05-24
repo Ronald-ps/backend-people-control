@@ -34,10 +34,10 @@ def test_company_simple_list_invalide_request(db, rf, user):
   response = company_simple_list(request)
   assert response.status_code == HTTPStatus.FORBIDDEN
 
-  request = rf.get("/company/simple-list", {})
+  request = rf.get("/company/simple-list")
   request.user = None
   response = company_simple_list(request)
-  assert response.status_code == HTTPStatus.UNAUTHORIZED
+  assert response.status_code == HTTPStatus.FORBIDDEN
 
 
 def test_company_simple_list_pagination(db, rf, user):
