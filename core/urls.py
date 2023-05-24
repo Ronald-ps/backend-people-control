@@ -5,6 +5,8 @@ from core import views, viewsets
 
 router = DefaultRouter()
 router.register(r'company', viewsets.CompanyViewSet ,basename="company")
+router.register(r'department', viewsets.DepartmentViewSet ,basename="department")
+router.register(r'employee', viewsets.EmployeeViewSet ,basename="employee")
 
 urlpatterns = [
     path("hello-word", views.hello_world, name="hello_world"),
