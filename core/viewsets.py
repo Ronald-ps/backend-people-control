@@ -1,7 +1,7 @@
 from rest_framework import permissions, viewsets
 
 from core.models import Company
-from core.serializers import CompanySerializer
+from core.serializers.br_company_serializer import CompanySerializer
 
 
 # TODO: alterar permissão desse serializer, mas por hora, tá ótimo
