@@ -37,6 +37,23 @@ export const defaultBackendHttpClient = axios.create({
 - `/login`
 > methods: ["POST"]
 > *Faz login com base na senha e usuários passados.*
->> Parâmetros:
->> - username: str
->> - password: str
+> Parâmetros:
+> - username: str
+> - password: str
+- `/company/simple-list`
+> methods: ["GET"]
+> *Retorna uma lista de empresas com nome e id ordenado por número de funcionários e sub-ordenado por nome*
+> Parâmetros:
+> - page: int
+>
+> Paginação: 10 items por requisição
+> Exemplo de retorno:
+> ```json
+> {
+>   "companies": [
+>    { "id": 1, "name": "Company10"},
+>    { "id": 24, "name": "Company11"},
+>    { "id": 30, "name": "Company12"},
+>   ]
+>}
+> ```
