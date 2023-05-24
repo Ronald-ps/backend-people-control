@@ -38,6 +38,5 @@ class Employee(SoftDeleteBaseModel):
     phone = models.CharField(max_length=20)
     date_of_birth = models.DateField()
     date_of_entry = models.DateField()
-    date_of_hire = models.DateTimeField()
     date_of_departure = models.DateField(blank=True, null=True)
     city = models.CharField(max_length=100)
