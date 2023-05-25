@@ -12,6 +12,7 @@ class SoftDeleteQuerySet(models.QuerySet):
         self.update(is_active=False)
 
 
+
 class SoftDeleteManager(models.Manager):
     """
         Manager para não retornar multas deletadas em consultas normais

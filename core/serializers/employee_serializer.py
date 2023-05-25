@@ -13,6 +13,6 @@ class EmployeeSerializer(serializers.ModelSerializer):
                     'department_name', 'first_name',
                     'last_name', 'email',
                     'phone', 'date_of_birth',
-                    'date_of_entry', 'date_of_hire',
+                    'date_of_entry',
                     'date_of_departure', 'city'
                   ]
