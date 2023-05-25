@@ -10,7 +10,7 @@ class CompanySerializer(serializers.ModelSerializer):
     employee_count = serializers.SerializerMethodField()
 
     def get_employee_count(self, obj):
-        # len pra não fazer n+1 aqui (select_related salva)
+        # len pra não fazer n+1 aqui (prefetch_related salva)
         return len(obj.employees.all())
 
     def validate_cnpj(self, value):
