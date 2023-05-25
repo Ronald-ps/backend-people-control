@@ -1,5 +1,8 @@
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.filters import OrderingFilter
 from rest_framework import permissions, viewsets
 
+from core.filters import EmployeeFilter
 from core.models import Company, Department, Employee
 from core.serializers.br_company_serializer import CompanySerializer
 from core.serializers.department_serializer import DepartmentSerializer
@@ -35,3 +38,6 @@ class EmployeeViewSet(viewsets.ModelViewSet):
     queryset = Employee.objects.all()
     serializer_class = EmployeeSerializer
     permission_classes = [permissions.IsAuthenticated]
+    filter_backends = [OrderingFilter, DjangoFilterBackend]
+    filterset_class = EmployeeFilter
+    ordering_fields = ['first_name', 'last_name', 'date_of_birth', 'date_of_entry']

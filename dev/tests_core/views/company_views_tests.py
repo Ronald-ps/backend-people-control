@@ -12,7 +12,7 @@ def test_company_simple_list(db, rf, user):
   # Número de funcionários impacta na ordenação
   make("core.Employee", company=companies[1], department__company_id=companies[1].id, _quantity=1)
 
-  request = rf.get("/company/simple-list")
+  request = rf.get("/companies/simple-list")
   request.user = user
   response = company_simple_list(request)
 
@@ -29,12 +29,12 @@ def test_company_simple_list(db, rf, user):
 # TODO: setar um setup de banco de dados para ser usado o mesmo banco de dados.
 # recriar um banco de dados é custoso
 def test_company_simple_list_invalide_request(db, rf, user):
-  request = rf.post("/company/simple-list", {})
+  request = rf.post("/companies/simple-list", {})
   request.user = user
   response = company_simple_list(request)
   assert response.status_code == HTTPStatus.FORBIDDEN
 
-  request = rf.get("/company/simple-list")
+  request = rf.get("/companies/simple-list")
   request.user = None
   response = company_simple_list(request)
   assert response.status_code == HTTPStatus.FORBIDDEN
@@ -49,7 +49,7 @@ def test_company_simple_list_pagination(db, rf, user):
   for company in companies_with_employees:
     make("core.Employee", company=company, department__company_id=company.id, _quantity=2)
 
-  request = rf.get("/company/simple-list", { "page": 2 })
+  request = rf.get("/companies/simple-list", { "page": 2 })
   request.user = user
   response = company_simple_list(request)
   assert response.status_code == HTTPStatus.OK

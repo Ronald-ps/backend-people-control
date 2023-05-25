@@ -40,7 +40,7 @@ export const defaultBackendHttpClient = axios.create({
 > Parâmetros:
 > - username: str
 > - password: str
-- `/company/simple-list`
+- `/companies/simple-list`
 > methods: ["GET"]
 > *Retorna uma lista de empresas com nome e id ordenado por número de funcionários e sub-ordenado por nome*
 > Parâmetros:
