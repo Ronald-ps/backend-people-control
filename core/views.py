@@ -2,10 +2,11 @@ from http import HTTPStatus
 
 from django.contrib.auth import authenticate, login
 from django.core.paginator import Paginator
-from django.http import HttpResponseNotAllowed, JsonResponse
+from django.http import HttpResponseBadRequest, HttpResponseNotAllowed, JsonResponse
 from django.views.decorators.csrf import ensure_csrf_cookie
 from rest_framework.decorators import api_view
 
+from core.forms import LoginRequestForm
 from core.services.company_service import get_companies_by_employees_num
 from core.utils.decorators import ajax_login_required
 
@@ -32,9 +33,14 @@ def login_view(request):
     if request.method != "POST":
         return HttpResponseNotAllowed(["POST"], "Method not allowed.")
 
-    username = request.POST['username']
-    password = request.POST['password']
-    user = authenticate(request, username=username, password=password)
+    # Eu poderia fazer isso com um serializer do django rest,
+    # mas aí eu não codaria nada poxa : !
+    form = LoginRequestForm(request.body)
+    if not form.is_valid():
+        return HttpResponseBadRequest("Erro na validação, usuário ou senha mal formatados")
+
+    form_data = form.clean()
+    user = authenticate(request, username=form_data["username"], password=form_data["password"])
     if user is None:
         return JsonResponse(
         {
@@ -43,7 +49,7 @@ def login_view(request):
         }, status=HTTPStatus.UNAUTHORIZED)
 
     login(request, user)
-    return JsonResponse({'success': True, 'message': 'Login success.'})
+    return JsonResponse({'success': True, 'message': 'Login success.', "user_info": user.to_dict_json()})
 
 
 # Eu podia fazer isso com o drf, mas preferi usar um tiquin do padrão do

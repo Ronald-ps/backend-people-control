@@ -1,7 +1,7 @@
 from django.db.models import Count
 
 from core.models import Company
-from core.soft_delete import SoftDeleteQuerySet
+from core.utils.soft_delete import SoftDeleteQuerySet
 
 def get_companies_by_employees_num() -> SoftDeleteQuerySet:
     """
