@@ -1,9 +1,12 @@
+
+# from decimal import Decimal as D
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
 from core.utils.soft_delete import SoftDeleteBaseModel
 
-
+# Normalmente, eu usaria TextField no lugar de Charfield, isso evita uma validação
+# A mais por parte do django. Mas eu achei melhor fazer tudo bonitinho por aqui
 class User(AbstractUser):
     """ Extend default auth User  """
     def to_dict_json(self):
@@ -53,3 +56,15 @@ class Employee(SoftDeleteBaseModel):
     date_of_entry = models.DateField()
     date_of_departure = models.DateField(blank=True, null=True)
     city = models.CharField(max_length=100)
+
+
+# class CostCenter(models.Model):
+#     code = models.CharField(max_length=10)
+#     name = models.CharField(max_length=100)
+#     budget = models.DecimalField(max_digits=10, decimal_places=2)
+#     planned_expenses = models.DecimalField(max_digits=10, decimal_places=2, default=D(0))
+#     actual_expenses = models.DecimalField(max_digits=10, decimal_places=2, default=D(0))
+#     created_at = models.DateField(auto_now_add=True)
+
+#     def __str__(self):
+#         return self.name
