@@ -1,7 +1,9 @@
 from http import HTTPStatus
+
 from django.contrib.auth import authenticate, login
 from django.core.paginator import Paginator
 from django.http import HttpResponseNotAllowed, JsonResponse
+from django.views.decorators.csrf import ensure_csrf_cookie
 from rest_framework.decorators import api_view
 
 from core.services.company_service import get_companies_by_employees_num
@@ -10,6 +12,18 @@ from core.utils.decorators import ajax_login_required
 @ajax_login_required
 def hello_world(request):
     return JsonResponse({"message": "Hello World!"})
+
+
+@ensure_csrf_cookie
+def whoami(request):
+    if not request.user.is_authenticated:
+        return JsonResponse({"authenticated": False})
+
+    user_info = {
+        "user": request.user.to_dict_json(),
+        "authenticated": True,
+    }
+    return JsonResponse(user_info)
 
 
 # TODO: Para origens diferentes, isso aqui não vai dar certo : (
