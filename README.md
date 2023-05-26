@@ -15,6 +15,13 @@ Docker compose é uma forma rápida de criar ambientes docker/ containers.
 ```
 4. Acesse **0.0.0.0:8000/**.
 
+5. Para gerar dados, execute
+```shell
+# rode com os containers em execução
+$ docker compose exec django python manage.py populate_database
+```
+
+.
 OBS: Esse projeto usa imagens seguras, pode ser verificado em ./Dockerfile e ./docker-compose.yaml .
 
 ### Com poetry
@@ -33,6 +40,9 @@ $ docker compose up -d postgresql
 
 Depois disso é só executar `python manage.py runserver`
 e acessar `localhost:8000`
+
+Com o comando `python manage.py populate_database` é possível criar rapidamente um usuário
+administrador com username "admin" e senha "password", além de outros dados fakes para trabalhar.
 
 ## Sobre o projeto
 O template base desse projeto foi tirado do meu repositório [modelo_rapido_djavue](https://github.com/Ronald-ps/modelo_rapido_djavue).
