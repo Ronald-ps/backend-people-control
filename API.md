@@ -238,3 +238,69 @@ Para obter o cookie de csrf, basta fazer uma chamada para "/whoami", que é uma 
     "integration_code": "IntegrationCode1"
 }
 ```
+### `/employees/`
+> methods: ["GET", "POST"]
+> *Retorna informações sobre funcionários de uma empresa ou departamento. Com método POST, cria um novo funcionário*
+> Parâmetros POST:
+> - id: int. Id do departamento.
+> - company: int. Relacionamento com a empresa associada ao departamento.
+> - department: int. Relacionamento com o departamento.
+> - first_name: str. Primeiro nome.
+> - last_name: str. Sobrenome.
+> - email: str. Endereço de e-mail.
+> - phone: str. Número de telefone.
+> - date_of_birth: str. Data de nascimento.
+> - date_of_entry: str. Data de entrada.
+> - date_of_departure: str. Data de saída.
+> - city: str. Cidade.
+>
+> Parâmetros GET:
+>> Alguns parâmetros de filtragem e ordenação podem ser passados para a api.
+>> Essa filtragem é baseada em [django-filters](https://django-filter.readthedocs.io/en/stable/)
+>> Para saber mais sobre como filtra, veja a [seção django-filters](#django-filters)
+>
+> Exemplos de retorno:
+```json
+{
+    "count": 9,
+    "next": null,
+    "previous": null,
+    "results": [
+        {
+            "id": 1,
+            "employee_count": 3,
+            "company": 38,
+            "company_name": "Granero",
+            "name": "Department A",
+            "integration_code": "IntegrationCode1"
+        },
+        {
+            "id": 2,
+            "employee_count": 4,
+            "company": 39,
+            "company_name": "ABC Company",
+            "name": "Department B",
+            "integration_code": "IntegrationCode2"
+        },
+        ...
+    ]
+}
+```
+---
+
+
+## Django-filters
+Ao utilizar o Django Filters, você pode passar uma variedade de parâmetros na URL para pesquisar e filtrar os  dados. Os parâmetros GET mais comuns que podem ser usados com o Django Filters são:
+- `exact`: Filtra os registros onde o campo é exatamente igual ao valor fornecido.
+- `iexact`: Filtra os registros onde o campo é exatamente igual ao valor fornecido, ignorando diferenças de maiúsculas e minúsculas.
+- `contains`: Filtra os registros onde o campo contém o valor fornecido.
+- `icontains`: Filtra os registros onde o campo contém o valor fornecido, ignorando diferenças de maiúsculas e minúsculas.
+- `in`: Filtra os registros onde o campo está entre uma lista de valores fornecidos.
+- `gt`: Filtra os registros onde o campo é maior que o valor fornecido.
+- `gte`: Filtra os registros onde o campo é maior ou igual ao valor fornecido.
+- `lt`: Filtra os registros onde o campo é menor que o valor fornecido.
+- `lte`: Filtra os registros onde o campo é menor ou igual ao valor fornecido.
+- `startswith`: Filtra os registros onde o campo começa com o valor fornecido.
+- `istartswith`: Filtra os registros onde o campo começa com o valor fornecido, ignorando diferenças de maiúsculas e minúsculas.
+- `endswith`: Filtra os registros onde o campo termina com o valor fornecido.
+- `iendswith`: Filtra os registros onde o campo termina com o valor fornecido, ignorando diferenças de maiúsculas e minúsculas.
