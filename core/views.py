@@ -7,7 +7,7 @@ from django.views.decorators.csrf import ensure_csrf_cookie
 from rest_framework.decorators import api_view
 
 from core.forms import LoginRequestForm
-from core.services.company_service import get_companies_by_employees_num
+from core.services.company_svc import get_companies_by_employees_num
 from core.utils.decorators import ajax_login_required
 
 @ajax_login_required

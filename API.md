@@ -136,8 +136,9 @@ Para obter, basta fazer uma chamada para "/whoami", que é um endpoint que retor
 ---
 
 ### `/companies/<int: pk>`
-> methods: ["GET", "PUT", "PATCH"]
+> methods: ["GET", "PUT", "PATCH", "DELETE"]
 > *Retorna informações de uma empresa, em método get, e salva uma company com requisição PUT E PATCH(edição de dados).*
+> *Com método DELETE, deleta a company (soft-delete)*
 >
 > Parâmetros PUT e PATCH(não obrigatórios):
 > - **cnpj**: str: apenas dígitos numéricos, máximo de 14 números
@@ -219,8 +220,10 @@ Para obter, basta fazer uma chamada para "/whoami", que é um endpoint que retor
 ```
 ---
 ### `/departments/<int: pk>`
-> methods: ["GET", "PUT", "PATCH"]
+> methods: ["GET", "PUT", "PATCH", "DELETE"]
 > *Retorna informações sobre departamentos de uma empresa. Com método PATCH, edita um departamento*
+> *Com método DELETE, deleta o departamento (soft-delete)*
+>
 > Parâmetros PATCH(parâmetros não obrigatórios):
 > - **id**: int. Id do departamento
 > - **company**: int (relacionamento com a empresa associada ao departamento)
@@ -303,8 +306,10 @@ Para obter, basta fazer uma chamada para "/whoami", que é um endpoint que retor
 ```
 ---
 ### `/employees/<int: pk>`
-> methods: ["GET", "PUT", "PATCH"]
+> methods: ["GET", "PUT", "PATCH", "DELETE"]
 > *Retorna informações sobre UM funcionário de uma empresa ou departamento. Com método PATCH, edita os dados do funcionário*
+> *Com método DELETE, deleta o funcionário (soft-delete)*
+>
 > Parâmetros PATCH(parâmetros opcionais):
 > - id: int. Id do departamento.
 > - company: int. Relacionamento com a empresa associada ao departamento.
