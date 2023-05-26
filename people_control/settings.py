@@ -34,8 +34,8 @@ DEBUG = APPLICATION_ENVIRONMENT == "development"
 ALLOWED_HOSTS = [
     os.getenv("PRINCIPAL_HOST"),
 ]
-if DEBUG:
-    ALLOWED_HOSTS += ["localhost", "127.0.0.1"]
+if DEBUG or APPLICATION_ENVIRONMENT=="development":
+    ALLOWED_HOSTS += ["localhost", "127.0.0.1", "0.0.0.0"]
 
 
 # Application definition
