@@ -36,10 +36,16 @@ class Company(SoftDeleteBaseModel):
             "name": self.name,
         }
 
+    def __str__(self):
+        return self.name
+
 class Department(SoftDeleteBaseModel):
     company = models.ForeignKey(Company, on_delete=models.CASCADE, related_name="departments")
     name = models.CharField(max_length=100)
     integration_code = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
 
 
 class Employee(SoftDeleteBaseModel):
@@ -55,11 +61,15 @@ class Employee(SoftDeleteBaseModel):
     date_of_departure = models.DateField(blank=True, null=True)
     city = models.CharField(max_length=100)
 
+    def __str__(self):
+        return f"{self.first_name} {self.last_name}"
+
 
 class CostCenter(SoftDeleteBaseModel):
     """ Modelo para um centro de custos """
     company = models.ForeignKey(Company, on_delete=models.CASCADE, related_name="cost_centers")
     department = models.ForeignKey(Department, on_delete=models.CASCADE, related_name="cost_centers")
+    # código de identificação do centro de custo
     code = models.CharField(max_length=10)
     description = models.TextField()
     budget = models.DecimalField(max_digits=10, decimal_places=2, default=D(0))
@@ -67,6 +77,8 @@ class CostCenter(SoftDeleteBaseModel):
     actual_expenses = models.DecimalField(max_digits=10, decimal_places=2, default=D(0))
     created_at = models.DateField(auto_now_add=True)
 
+    def __str__(self):
+        return f"{self.code}, {self.created_at}, department {self.department_id}"
 
 class Cost(SoftDeleteBaseModel):
     """ Modelo de registro de custos """
@@ -75,3 +87,6 @@ class Cost(SoftDeleteBaseModel):
     description = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     is_planned_cost = models.BooleanField(default=True)
+
+    def __str__(self):
+        return f"Cost center id:{self.cost_center_id}, {self.created_at}, {self.pk}"

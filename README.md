@@ -5,6 +5,8 @@
 - [Sobre testes](#sobre-testes)
 - [Sobre as variáveis do .env/.env-example](#sobre-as-variáveis-do-envenv-example)
 
+**[Referencia de endpoints](./API.md)**
+
 ## Como rodar esse projeto
 
 ### Com docker compose
@@ -26,7 +28,8 @@ Docker compose é uma forma rápida de criar ambientes docker/ containers.
 # rode com os containers em execução
 $ docker compose exec django python manage.py populate_database
 ```
-com esse comando, são criados dados fakes, além de um usuário admin, com username "admin" e senha "password".
+com esse comando, são criados dados fakes, além de um usuário admin, com username "admin" e senha "password",
+e um usuário comum para testes de login, com username **"user_teste"** e password **"password"**.
 
 5. Acesse **0.0.0.0:8000/admin** para logar, após, é possível acessar **0.0.0.0:8000** e alguns endpoints listados automaticamente pelo django rest. Não estarão listados todos os endpoints.
 
@@ -52,7 +55,8 @@ Depois disso é só executar `python manage.py runserver`
 e acessar `localhost:8000`
 
 Com o comando `python manage.py populate_database` é possível criar rapidamente um usuário
-administrador com username "admin" e senha "password", além de outros dados fakes para trabalhar.
+administrador com username "admin" e senha "password", além de outros dados fakes para trabalhar,
+e um usuário comum para testes de login, com username **"user_teste"** e password **"password"**.
 
 ## Sobre o projeto
 O template base desse projeto foi tirado do meu repositório [modelo_rapido_djavue](https://github.com/Ronald-ps/modelo_rapido_djavue).

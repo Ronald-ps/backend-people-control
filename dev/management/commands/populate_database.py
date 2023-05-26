@@ -1,3 +1,5 @@
+import time
+
 from django.core.management.base import BaseCommand
 from model_bakery import baker
 from core.models import Company, Department, Employee, CostCenter, Cost, User
@@ -12,6 +14,14 @@ class Command(BaseCommand):
         if not User.objects.filter(username="admin").exists():
             User.objects.create_user(username="admin", password="password", is_staff=True, is_superuser=True)
             self.stdout.write(self.style.SUCCESS('Super User created'))
+            self.stdout.write(self.style.SUCCESS('password: "password", username: "admin"'))
+            time.sleep(0.3)
+
+        if not User.objects.filter(username="user_teste"):
+            User.objects.create_user(username="user_teste", password="password")
+            self.stdout.write(self.style.SUCCESS('User created'))
+            self.stdout.write(self.style.SUCCESS('password: "password", username: "user_teste"'))
+            time.sleep(0.5)
 
         # Criando empresas
         companies = baker.make(Company, _quantity=5, _fill_optional=True)
