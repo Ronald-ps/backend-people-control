@@ -1,12 +1,20 @@
+# API
+
+- [Conectar uma api do frontend com o projeto](#conectar-uma-api-do-frontend-com-o-projeto)
 - [Requisição para o django de uma origem diferente](#requisição-para-o-django-de-uma-origem-diferente)
 - [Configurar axios](#configurar-axios)
 - [Como fazer login](#como-fazer-login)
 - [Endpoints](#endpoints)
-    - [`/whoami`](#whoami)
-    - [`/login`](#login)
-    - [`/companies`](#companies)
-    - [`/companies/<int:pk>`](#companiesint-pk)
-    - [`/companies/simple-list`](#companiessimple-list)
+  - [/whoami](#whoami)
+  - [/login](#login)
+  - [/companies/](#companies)
+  - [/companies/<int: pk>](#companiesint-pk)
+  - [/companies/simple-list](#companiessimple-list)
+  - [/departments/](#departments)
+  - [/departments/<int: pk>](#departmentsint-pk)
+  - [/employees/](#employees)
+  - [/employees/<int: pk>](#employeesint-pk)
+- [Django-filters](#django-filters)
 ---
 ---
 # API

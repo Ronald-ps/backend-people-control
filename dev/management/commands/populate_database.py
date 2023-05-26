@@ -10,7 +10,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         if not User.objects.filter(username="admin").exists():
-            User.objects.create_user(username="admin", password="password", is_staff=True)
+            User.objects.create_user(username="admin", password="password", is_staff=True, is_superuser=True)
             self.stdout.write(self.style.SUCCESS('Super User created'))
 
         # Criando empresas

@@ -1,3 +1,10 @@
+- [Como rodar esse projeto](#como-rodar-esse-projeto)
+  - [Com docker compose](#com-docker-compose)
+  - [Com poetry](#com-poetry)
+- [Sobre o projeto](#sobre-o-projeto)
+- [Sobre testes](#sobre-testes)
+- [Sobre as variáveis do .env/.env-example](#sobre-as-variáveis-do-envenv-example)
+
 ## Como rodar esse projeto
 
 ### Com docker compose
@@ -7,19 +14,22 @@ Docker compose é uma forma rápida de criar ambientes docker/ containers.
 
 > *Dependendo da forma de instalação, o plugin **compose** já é automaticamente instalado. Para verificar, execute `$ docker compose`*
 
-2. Crie um arquivo **.env** com o mesmo conteúdo de **.env.example** ou simplesmente rode `$ cp .env-example .env`.
+2. Crie um arquivo **.env** com o mesmo conteúdo de **.env.example** ou simplesmente rode `$ cp .env-example .env`
 
 3. Rode
 ```shell
   $ docker compose up --build
 ```
-4. Acesse **0.0.0.0:8000/**.
 
-5. Para gerar dados, execute
+4. Para gerar dados, execute
 ```shell
 # rode com os containers em execução
 $ docker compose exec django python manage.py populate_database
 ```
+com esse comando, são criados dados fakes, além de um usuário admin, com username "admin" e senha "password".
+
+5. Acesse **0.0.0.0:8000/admin** para logar, após, é possível acessar **0.0.0.0:8000** e alguns endpoints listados automaticamente pelo django rest. Não estarão listados todos os endpoints.
+
 
 .
 OBS: Esse projeto usa imagens seguras, pode ser verificado em ./Dockerfile e ./docker-compose.yaml .
@@ -47,6 +57,7 @@ administrador com username "admin" e senha "password", além de outros dados fak
 ## Sobre o projeto
 O template base desse projeto foi tirado do meu repositório [modelo_rapido_djavue](https://github.com/Ronald-ps/modelo_rapido_djavue).
 Os endpoints e algumas outras infos da api podem ser encontradas em [API.md](./API.md)
+Alguns modelos são sobrescritos para implementar a lógica de soft-delete.
 
 ## Sobre testes
 Nesse projeto, a lib utilizada foi o [pytest-django](https://pytest-django.readthedocs.io/en/latest/).
