@@ -41,7 +41,7 @@ class SoftDeleteBaseModel(models.Model):
     class Meta:
         abstract = True
     objects = SoftDeleteManager()
-    # field that checks if the data was "deleted" or not
+    # field que checa se o modelo foi deletado ou não
     is_active = models.BooleanField(default=True, db_index=True)
 
     def delete(self):
@@ -51,16 +51,14 @@ class SoftDeleteBaseModel(models.Model):
         self._soft_delete_related_models(related_models=related_models)
 
 
-    # TODO: retornar aqui uma lista de SoftDeleteBaseModel
-    def _collect_relation_models(self) -> list[models.base.ModelBase]:
+    def _collect_relation_models(self):
         relation_models = []
         for field in self._meta.get_fields():
             if not field.one_to_many:
                 continue
 
             related_model = field.related_model
-            # TODO: usar aqui direto a extensão do modelo, e não o QuerySet
-            if not isinstance(related_model.objects.all(), SoftDeleteQuerySet):
+            if not issubclass(related_model, SoftDeleteBaseModel):
                 raise TypeError("Models are expected to extend SoftDeleteBaseModel")
 
             relation_models.append(related_model)

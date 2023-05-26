@@ -27,8 +27,7 @@ def whoami(request):
     return JsonResponse(user_info)
 
 
-# TODO: Para origens diferentes, isso aqui não vai dar certo : (
-# Vai cair no caso do csrf_token, vai ser chato de resolver.
+# Em caso de erro de csrf, chamar a api whoami
 def login_view(request):
     if request.method != "POST":
         return HttpResponseNotAllowed(["POST"], "Method not allowed.")

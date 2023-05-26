@@ -9,7 +9,6 @@ from core.serializers.department_serializer import DepartmentSerializer
 from core.serializers.employee_serializer import EmployeeSerializer
 
 
-# TODO: alterar permissão desse serializer, mas por hora, tá ótimo
 class CompanyViewSet(viewsets.ModelViewSet):
     """
     This viewset automatically provides `list`, `create`, `retrieve`,
