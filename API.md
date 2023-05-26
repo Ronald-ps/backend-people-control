@@ -262,32 +262,81 @@ Para obter, basta fazer uma chamada para "/whoami", que é um endpoint que retor
 > Exemplos de retorno:
 ```json
 {
-    "count": 9,
-    "next": null,
+    "count": 34,
+    "next": "http://localhost:8000/employees/?page=2",
     "previous": null,
     "results": [
         {
             "id": 1,
-            "employee_count": 3,
-            "company": 38,
-            "company_name": "Granero",
-            "name": "Department A",
-            "integration_code": "IntegrationCode1"
+            "company": 47,
+            "company_name": "OpenAI Technologies",
+            "department": 10,
+            "department_name": "Engineering",
+            "first_name": "John",
+            "last_name": "Doe",
+            "email": "john.doe@example.com",
+            "phone": "+55 123-456-7890",
+            "date_of_birth": "1990-01-01",
+            "date_of_entry": "2021-01-01",
+            "date_of_departure": "2022-12-31",
+            "city": "San Francisco"
         },
         {
             "id": 2,
-            "employee_count": 4,
-            "company": 39,
-            "company_name": "ABC Company",
-            "name": "Department B",
-            "integration_code": "IntegrationCode2"
-        },
+            "company": 49,
+            "company_name": "Acme Corporation",
+            "department": 11,
+            "department_name": "Sales",
+            "first_name": "Jane",
+            "last_name": "Smith",
+            "email": "jane.smith@example.com",
+            "phone": "+1 987-654-3210",
+            "date_of_birth": "1985-05-10",
+            "date_of_entry": "2020-06-15",
+            "date_of_departure": "2023-01-15",
+            "city": "New York City"
+        }
         ...
     ]
 }
+
 ```
 ---
-
+### `/employees/<int: pk>`
+> methods: ["GET", "PUT", "PATCH"]
+> *Retorna informações sobre UM funcionário de uma empresa ou departamento. Com método PATCH, edita os dados do funcionário*
+> Parâmetros PATCH(parâmetros opcionais):
+> - id: int. Id do departamento.
+> - company: int. Relacionamento com a empresa associada ao departamento.
+> - department: int. Relacionamento com o departamento.
+> - first_name: str. Primeiro nome.
+> - last_name: str. Sobrenome.
+> - email: str. Endereço de e-mail.
+> - phone: str. Número de telefone.
+> - date_of_birth: str. Data de nascimento.
+> - date_of_entry: str. Data de entrada.
+> - date_of_departure: str. Data de saída.
+> - city: str. Cidade.
+>
+> Exemplos de retorno:
+```json
+{
+    "id": 1,
+    "company": 47,
+    "company_name": "OpenAI Technologies",
+    "department": 10,
+    "department_name": "Engineering",
+    "first_name": "John",
+    "last_name": "Doe",
+    "email": "john.doe@example.com",
+    "phone": "+55 123-456-7890",
+    "date_of_birth": "1990-01-01",
+    "date_of_entry": "2021-01-01",
+    "date_of_departure": "2022-12-31",
+    "city": "San Francisco"
+}
+```
+---
 
 ## Django-filters
 Ao utilizar o Django Filters, você pode passar uma variedade de parâmetros na URL para pesquisar e filtrar os  dados. Os parâmetros GET mais comuns que podem ser usados com o Django Filters são:
