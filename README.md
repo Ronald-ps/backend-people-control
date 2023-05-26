@@ -13,7 +13,7 @@ Docker compose é uma forma rápida de criar ambientes docker/ containers.
 ```shell
   $ docker compose up --build
 ```
-4. Acesse **localhost:8000/**.
+4. Acesse **0.0.0.0:8000/**.
 
 OBS: Esse projeto usa imagens seguras, pode ser verificado em ./Dockerfile e ./docker-compose.yaml .
 
@@ -30,6 +30,9 @@ $ cp .env-example .env
   # sobe o container do postgres
 $ docker compose up -d postgresql
 ```
+
+Depois disso é só executar `python manage.py runserver`
+e acessar `localhost:8000`
 
 ## Sobre o projeto
 O template base desse projeto foi tirado do meu repositório [modelo_rapido_djavue](https://github.com/Ronald-ps/modelo_rapido_djavue).
@@ -51,3 +54,17 @@ Eu testei alguns funcionalidades, como o soft delete que implementei e as views 
 Para rodar os testes, basta executa `pytest .` no terminal.
 Para executar um teste específico, basta executar:
 `pytest _caminho_do_arquivo_::_nome_da_função`
+
+
+## Sobre as variáveis do .env/.env-example
+O .env é o arquivo salva variáveis de ambientes que projeto django e mesmo o docker-compose lerá.
+- POSTGRES_PORT: É a porta de conexão do banco de dados.
+- POSTGRES_USER: usuário do banco de dados, para autenticação.
+- POSTGRES_PASSWORD: senha do banco de dados para autenticação.
+- POSTGRES_HOST: host de conexão ao banco de dados. Para o caso de ambos os projetos estarem rodando em container,
+esse host é sobrescrito
+- FRONTEND_ORIGIN: origem das requisições ao backend. Por políticas de cors, e mesmo de csrf, as chamadas ao backend são restritas à hosts confiáveis.
+- PRINCIPAL_HOST: Host principal onde o projeto estará rodando. Se o seu site estiver hospedado em mysite.com.br, esse é o valor que deverá estar na variável.
+- ENVIRONMENT: Ambiente em que a aplicação está rodando. Pode ter dois valores: "production" e "development".
+   - development: ambiente de desenvolvimento
+   - production: ambiente de produção

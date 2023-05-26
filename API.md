@@ -144,7 +144,8 @@ Para obter, basta fazer uma chamada para "/whoami", que é um endpoint que retor
 > - **cnpj**: str: apenas dígitos numéricos, máximo de 14 números
 > - **cep**: str: apenas dígitos numéricos, máximo de 8 dígitos
 > - **state_acronym**: str: apenas letras, máximo de 2 letras
-> - **name**: str
+> - **name**: str: nome da empresa.
+> - **is_active**: bool. Indica se a empresa é ativa ou não.
 >
 > Exemplos de retorno:
 ```json
@@ -229,6 +230,7 @@ Para obter, basta fazer uma chamada para "/whoami", que é um endpoint que retor
 > - **company**: int (relacionamento com a empresa associada ao departamento)
 > - **name**: str. Nome do departamento.
 > - **integration_code**: str. Código de integração do departamento.
+> - **is_active**: bool. Indica se o departamento é ativo ou não.
 >
 > Exemplos de retorno:
 ```json
@@ -322,6 +324,7 @@ Para obter, basta fazer uma chamada para "/whoami", que é um endpoint que retor
 > - date_of_entry: str. Data de entrada.
 > - date_of_departure: str. Data de saída.
 > - city: str. Cidade.
+> - **is_active**: bool. Indica se o funcionário é ativo ou não.
 >
 > Exemplos de retorno:
 ```json
