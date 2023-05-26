@@ -38,8 +38,6 @@ class Company(SoftDeleteBaseModel):
 
 class Department(SoftDeleteBaseModel):
     company = models.ForeignKey(Company, on_delete=models.CASCADE, related_name="departments")
-    # TODO: pensar melhor sobre como deve ser esse centro de custos
-    # vou deixar esse carinha nulo por enquanto, até descobrir sobre como deve ser um centro de custos
     name = models.CharField(max_length=100)
     integration_code = models.CharField(max_length=100)
 
@@ -68,3 +66,12 @@ class CostCenter(SoftDeleteBaseModel):
     planned_expenses = models.DecimalField(max_digits=10, decimal_places=2, default=D(0))
     actual_expenses = models.DecimalField(max_digits=10, decimal_places=2, default=D(0))
     created_at = models.DateField(auto_now_add=True)
+
+
+class Cost(SoftDeleteBaseModel):
+    """ Modelo de registro de custos """
+    cost_center = models.ForeignKey(CostCenter, on_delete=models.CASCADE, related_name="costs")
+    value = models.DecimalField(max_digits=10, decimal_places=2, default=D(0))
+    description = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    is_planned_cost = models.BooleanField(default=True)
