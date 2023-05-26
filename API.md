@@ -48,11 +48,11 @@ export const defaultBackendHttpClient = axios.create({
 
 
 ## Como fazer login
-O endpoint de login é "/login", porém, é importante notar o método de requisição é POST,
-portanto, o django faz verificação de **csrf**. Então, é preciso obter o csrf antes de fazer a requisição.
-Para obter o cookie de csrf, basta fazer uma chamada para "/whoami", que é uma api que retorna informações do usuário.
+A maioria dos endpoints desse projeto são permitidas apenas para usuários logados.
+O endpoint de login é "/login", porém, é importante notar que o método de requisição é POST,
+portanto, o django faz verificação de **csrf**. É preciso obter o cookie de csrf antes de fazer a requisição.
+Para obter, basta fazer uma chamada para "/whoami", que é um endpoint que retorna informações do usuário.
 **whoami** é um endpoint para requisição GET, com verificação de cors, e que retorna um cookie csrf.
-
 
 ## Endpoints
 ### `/whoami`

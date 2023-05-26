@@ -16,7 +16,7 @@ from pathlib import Path
 from dotenv import load_dotenv
 
 load_dotenv(".env")
-ENVIRONMENT = os.getenv("ENVIRONMENT", "production")
+APPLICATION_ENVIRONMENT = os.getenv("ENVIRONMENT", "production")
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -29,7 +29,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv("SECRET_KEY", "dbjwchpierbqpibríqur8748fb87134un7nd783d1n-983nd1-98")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv("DEBUG", True)
+DEBUG = APPLICATION_ENVIRONMENT == "development"
 
 ALLOWED_HOSTS = [
     os.getenv("PRINCIPAL_HOST"),
@@ -53,7 +53,7 @@ INSTALLED_APPS = [
     "corsheaders",
     "core",
 ]
-if ENVIRONMENT == "development":
+if APPLICATION_ENVIRONMENT == "development":
     INSTALLED_APPS.append("dev")
 
 
