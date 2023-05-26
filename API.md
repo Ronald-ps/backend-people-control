@@ -58,7 +58,8 @@ Para obter o cookie de csrf, basta fazer uma chamada para "/whoami", que é uma 
 ### `/whoami`
 > methods: ["GET"]
 > *Retorna as informações se o usuário está logado/autenticado. Caso esteja, retorna também as informações do usuário.*
-> Exemplo de retorno:
+>
+> Exemplos de retorno:
 ```json
 # Usuário autenticado
 {
@@ -168,7 +169,8 @@ Para obter o cookie de csrf, basta fazer uma chamada para "/whoami", que é uma 
 > - **page**: int
 >
 > Paginação: 10 items por requisição
-> Exemplo de retorno:
+>
+> Exemplos de retorno:
 ```json
 {
   "companies": [
@@ -185,9 +187,9 @@ Para obter o cookie de csrf, basta fazer uma chamada para "/whoami", que é uma 
 > Parâmetros POST:
 > - **id**: int. Id do departamento
 > - **company**: int (relacionamento com a empresa associada ao departamento)
-> - **cost_center**: str. Info do centro de custo.
 > - **name**: str. Nome do departamento.
 > - **integration_code**: str. Código de integração do departamento.
+>
 > Exemplos de retorno:
 ```json
 {
@@ -197,23 +199,42 @@ Para obter o cookie de csrf, basta fazer uma chamada para "/whoami", que é uma 
     "results": [
         {
             "id": 1,
-            "employee_count": 0,
+            "employee_count": 3,
             "company": 38,
             "company_name": "Granero",
-            "cost_center": null,
             "name": "Department A",
             "integration_code": "IntegrationCode1"
         },
         {
             "id": 2,
-            "employee_count": 0,
+            "employee_count": 4,
             "company": 39,
             "company_name": "ABC Company",
-            "cost_center": null,
             "name": "Department B",
             "integration_code": "IntegrationCode2"
         },
         ...
     ]
+}
+```
+---
+### `/departments/<int: pk>`
+> methods: ["GET", "PUT", "PATCH"]
+> *Retorna informações sobre departamentos de uma empresa. Com método PATCH, edita um departamento*
+> Parâmetros PATCH(parâmetros não obrigatórios):
+> - **id**: int. Id do departamento
+> - **company**: int (relacionamento com a empresa associada ao departamento)
+> - **name**: str. Nome do departamento.
+> - **integration_code**: str. Código de integração do departamento.
+>
+> Exemplos de retorno:
+```json
+{
+    "id": 1,
+    "employee_count": 19,
+    "company": 38,
+    "company_name": "Granero",
+    "name": "Department A",
+    "integration_code": "IntegrationCode1"
 }
 ```
