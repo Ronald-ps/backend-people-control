@@ -265,7 +265,7 @@ Para obter, basta fazer uma chamada para "/whoami", que é um endpoint que retor
 > - phone: str. Número de telefone.
 > - date_of_birth: str. Data de nascimento.
 > - date_of_entry: str. Data de entrada.
-> - date_of_departure: str. Data de saída.
+> - date_of_departure: str. Data de saída da empresa.
 > - city: str. Cidade.
 >
 > Parâmetros GET:
@@ -334,7 +334,7 @@ Para obter, basta fazer uma chamada para "/whoami", que é um endpoint que retor
 > - phone: str. Número de telefone.
 > - date_of_birth: str. Data de nascimento.
 > - date_of_entry: str. Data de entrada.
-> - date_of_departure: str. Data de saída.
+> - date_of_departure: str. Data de saída da empresa.
 > - city: str. Cidade.
 > - **is_active**: bool. Indica se o funcionário é ativo ou não.
 >
@@ -372,7 +372,7 @@ Para obter, basta fazer uma chamada para "/whoami", que é um endpoint que retor
 > - phone: str. Número de telefone.
 > - date_of_birth: str. Data de nascimento.
 > - date_of_entry: str. Data de entrada.
-> - date_of_departure: str. Data de saída.
+> - date_of_departure: str. Data de saída da empresa.
 > - city: str. Cidade.
 > - **is_active**: bool. Indica se o funcionário é ativo ou não.
 >
