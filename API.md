@@ -294,7 +294,7 @@ Para obter, basta fazer uma chamada para "/whoami", que é um endpoint que retor
             "phone": "551234567890",
             "date_of_birth": "1990-01-01",
             "date_of_entry": "2021-01-01",
-            "date_of_departure": "2022-12-31",
+            "date_of_departure": null,
             "city": "San Francisco"
         },
         {
@@ -307,9 +307,9 @@ Para obter, basta fazer uma chamada para "/whoami", que é um endpoint que retor
             "last_name": "Smith",
             "email": "jane.smith@example.com",
             "phone": "19876543210",
-            "date_of_birth": "19850510",
-            "date_of_entry": "20200615",
-            "date_of_departure": "20230115",
+            "date_of_birth": "2022-12-31",
+            "date_of_entry": "2022-12-31",
+            "date_of_departure": null,
             "city": "New York City"
         }
         ...
@@ -351,7 +351,45 @@ Para obter, basta fazer uma chamada para "/whoami", que é um endpoint que retor
     "phone": "551234567890",
     "date_of_birth": "1990-01-01",
     "date_of_entry": "2021-01-01",
-    "date_of_departure": "2022-12-31",
+    "date_of_departure": null,
+    "city": "San Francisco"
+}
+```
+---
+
+### `/employees/inactivated/<int: pk>`
+> methods: ["GET", "PUT", "PATCH"]
+> *Retorna informações sobre UM funcionário de uma empresa ou departamento, mas apenas se o funcionário for inativado. Com método PATCH, edita os dados do funcionário, inclusive, reativa-o.*
+>
+> Parâmetros PATCH(parâmetros opcionais):
+> - id: int. Id do departamento.
+> - company: int. Relacionamento com a empresa associada ao departamento.
+> - department: int. Relacionamento com o departamento.
+> - first_name: str. Primeiro nome.
+> - last_name: str. Sobrenome.
+> - email: str. Endereço de e-mail.
+> - phone: str. Número de telefone.
+> - date_of_birth: str. Data de nascimento.
+> - date_of_entry: str. Data de entrada.
+> - date_of_departure: str. Data de saída.
+> - city: str. Cidade.
+> - **is_active**: bool. Indica se o funcionário é ativo ou não.
+>
+> Exemplos de retorno:
+```json
+{
+    "id": 1,
+    "company": 47,
+    "company_name": "OpenAI Technologies",
+    "department": 10,
+    "department_name": "Engineering",
+    "first_name": "John",
+    "last_name": "Doe",
+    "email": "john.doe@example.com",
+    "phone": "551234567890",
+    "date_of_birth": "1990-01-01",
+    "date_of_entry": "2021-01-01",
+    "date_of_departure": null,
     "city": "San Francisco"
 }
 ```

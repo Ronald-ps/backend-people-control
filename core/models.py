@@ -43,7 +43,8 @@ class Company(SoftDeleteBaseModel):
 
 
 class Department(SoftDeleteBaseModel):
-    """ Modelo para departamento de uma empresa """
+    """Modelo para departamento de uma empresa"""
+
     company = models.ForeignKey(Company, on_delete=models.CASCADE, related_name="departments")
     name = models.CharField(max_length=100)
     integration_code = models.CharField(max_length=100)

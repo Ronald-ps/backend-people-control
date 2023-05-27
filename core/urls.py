@@ -7,6 +7,9 @@ router = DefaultRouter()
 router.register(r"companies", viewsets.CompanyViewSet, basename="companies")
 router.register(r"departments", viewsets.DepartmentViewSet, basename="departments")
 router.register(r"employees", viewsets.EmployeeViewSet, basename="employees")
+router.register(
+    r"employees/inactivated", viewsets.EmployeeInactivatedViewSet, basename="employees-inactivated"
+)
 
 urlpatterns = [
     path("hello-word", views.hello_world, name="hello_world"),
