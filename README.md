@@ -30,6 +30,8 @@ $ docker compose exec django python manage.py populate_database
 ```
 com esse comando, são criados dados fakes, além de um usuário admin, com username "admin" e senha "password",
 e um usuário comum para testes de login, com username **"user_teste"** e password **"password"**.
+Infelizmente, não deu tempo de eu tornar os dados que ele produz mais "realista", como por exemplo
+o cnpj ter somente números.
 
 5. Acesse **0.0.0.0:8000/admin** para logar, após, é possível acessar **0.0.0.0:8000** e alguns endpoints listados automaticamente pelo django rest. Não estarão listados todos os endpoints.
 
@@ -57,6 +59,8 @@ e acessar `localhost:8000`
 Com o comando `python manage.py populate_database` é possível criar rapidamente um usuário
 administrador com username "admin" e senha "password", além de outros dados fakes para trabalhar,
 e um usuário comum para testes de login, com username **"user_teste"** e password **"password"**.
+Infelizmente, não deu tempo de eu tornar os dados que ele produz mais "realista", como por exemplo
+o cnpj ter somente números.
 
 ## Sobre o projeto
 O template base desse projeto foi tirado do meu repositório [modelo_rapido_djavue](https://github.com/Ronald-ps/modelo_rapido_djavue).

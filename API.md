@@ -14,6 +14,7 @@
   - [/departments/<int: pk>](#departmentsint-pk)
   - [/employees/](#employees)
   - [/employees/<int: pk>](#employeesint-pk)
+  - [/employees/inactivated/<int: pk>](#employeesinactivatedint-pk)
 - [Django-filters](#django-filters)
 ---
 ---
