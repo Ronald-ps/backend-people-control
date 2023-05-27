@@ -1,10 +1,14 @@
-from http import HTTPStatus
 import json
+from http import HTTPStatus
 
 from model_bakery.baker import make
 from model_bakery.recipe import seq
+from rest_framework.test import force_authenticate
 
+from core.models import Company
 from core.views import company_simple_list
+from core.viewsets import CompanyViewSet
+from core.serializers.br_company_serializer import CompanySerializer
 
 
 def test_company_simple_list(db, rf, user):
@@ -61,3 +65,27 @@ def test_company_simple_list_pagination(db, rf, user):
 
     response_companies_ids = [c["id"] for c in response_content["companies"]]
     assert sorted(response_companies_ids) == sorted(companies_without_employees_ids)
+
+
+def test_company_viewset_create(drf_api_client, user, db):
+    request_data = {
+        "id": 3,
+        "cnpj": "98765432000101",
+        "cep": "54321098",
+        "state_acronym": "RJ",
+        "name": "Indústria XYZ S/A",
+        "employee_count": 500,
+        "address": "Avenida das Amostras, 456",
+        "city": "Rio de Janeiro",
+        "country": "Brasil",
+    }
+    headers = {"Content-Type": "application/json"}
+    request = drf_api_client.post("/api/companies/", request_data, format="json", headers=headers)
+    request.user = user
+    force_authenticate(request, user=user)
+
+    view = CompanyViewSet.as_view(actions={"post": "create"})
+    response = view(request)
+    serializer = CompanySerializer(Company.objects.first())
+    assert response.status_code == 201
+    assert response.data == serializer.data
