@@ -256,7 +256,7 @@ Para obter, basta fazer uma chamada para "/whoami", que é um endpoint que retor
 > methods: ["GET", "POST"]
 > *Retorna informações sobre funcionários de uma empresa ou departamento. Com método POST, cria um novo funcionário*
 > Parâmetros POST:
-> - id: int. Id do departamento.
+> - id: int. Id do funcionário.
 > - company: int. Relacionamento com a empresa associada ao departamento.
 > - department: int. Relacionamento com o departamento.
 > - first_name: str. Primeiro nome.
@@ -325,7 +325,7 @@ Para obter, basta fazer uma chamada para "/whoami", que é um endpoint que retor
 > *Com método DELETE, deleta o funcionário (soft-delete)*
 >
 > Parâmetros PATCH(parâmetros opcionais):
-> - id: int. Id do departamento.
+> - id: int. Id do funcionário.
 > - company: int. Relacionamento com a empresa associada ao departamento.
 > - department: int. Relacionamento com o departamento.
 > - first_name: str. Primeiro nome.
@@ -363,7 +363,7 @@ Para obter, basta fazer uma chamada para "/whoami", que é um endpoint que retor
 > *Retorna informações sobre UM funcionário de uma empresa ou departamento, mas apenas se o funcionário for inativado. Com método PATCH, edita os dados do funcionário, inclusive, reativa-o.*
 >
 > Parâmetros PATCH(parâmetros opcionais):
-> - id: int. Id do departamento.
+> - id: int. Id do funcionário.
 > - company: int. Relacionamento com a empresa associada ao departamento.
 > - department: int. Relacionamento com o departamento.
 > - first_name: str. Primeiro nome.
