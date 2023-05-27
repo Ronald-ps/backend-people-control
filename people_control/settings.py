@@ -34,7 +34,7 @@ DEBUG = APPLICATION_ENVIRONMENT == "development"
 ALLOWED_HOSTS = [
     os.getenv("PRINCIPAL_HOST"),
 ]
-if DEBUG or APPLICATION_ENVIRONMENT=="development":
+if DEBUG or APPLICATION_ENVIRONMENT == "development":
     ALLOWED_HOSTS += ["localhost", "127.0.0.1", "0.0.0.0"]
 
 
@@ -93,14 +93,14 @@ WSGI_APPLICATION = "people_control.wsgi.application"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-   'default': {
-       'ENGINE': 'django.db.backends.postgresql',
-       'NAME': os.getenv("POSTGRES_NAME", "postgres"),
-       'USER': os.getenv("POSTGRES_USER", "postgres"),
-       'PASSWORD': os.getenv("POSTGRES_PASSWORD", "postgres"),
-       'HOST': os.getenv("POSTGRES_HOST", "localhost"),
-       'PORT': os.getenv("POSTGRES_PORT", "5435"),
-   }
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": os.getenv("POSTGRES_NAME", "postgres"),
+        "USER": os.getenv("POSTGRES_USER", "postgres"),
+        "PASSWORD": os.getenv("POSTGRES_PASSWORD", "postgres"),
+        "HOST": os.getenv("POSTGRES_HOST", "localhost"),
+        "PORT": os.getenv("POSTGRES_PORT", "5435"),
+    }
 }
 
 
@@ -147,7 +147,9 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
 # csrf
-CSRF_TRUSTED_ORIGINS = [os.getenv("FRONTEND_ORIGIN", "http://localhost:3000"), ]
+CSRF_TRUSTED_ORIGINS = [
+    os.getenv("FRONTEND_ORIGIN", "http://localhost:3000"),
+]
 
 # cors-headers cors
 CORS_ALLOW_CREDENTIALS = True
@@ -159,10 +161,8 @@ AUTH_USER_MODEL = "core.User"
 # DRF (DJANGO REST FRAMEWORK)
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated'
-    ],
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE': 15,
+    "DEFAULT_PERMISSION_CLASSES": ["rest_framework.permissions.IsAuthenticated"],
+    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
+    "PAGE_SIZE": 15,
     # 'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
 }

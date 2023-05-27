@@ -10,6 +10,7 @@ from core.forms import LoginRequestForm
 from core.services.company_svc import get_companies_by_employees_num
 from core.utils.decorators import ajax_login_required
 
+
 @ajax_login_required
 def hello_world(request):
     return JsonResponse({"message": "Hello World!"})
@@ -42,18 +43,16 @@ def login_view(request):
     user = authenticate(request, username=form_data["username"], password=form_data["password"])
     if user is None:
         return JsonResponse(
-        {
-            'success': False,
-            'message': 'User or password invalid!.'
-        }, status=HTTPStatus.UNAUTHORIZED)
+            {"success": False, "message": "User or password invalid!."}, status=HTTPStatus.UNAUTHORIZED
+        )
 
     login(request, user)
-    return JsonResponse({'success': True, 'message': 'Login success.', "user_info": user.to_dict_json()})
+    return JsonResponse({"success": True, "message": "Login success.", "user_info": user.to_dict_json()})
 
 
 # Eu podia fazer isso com o drf, mas preferi usar um tiquin do padrão do
 # django, afinal, isso é um teste, neh?
-@api_view(http_method_names=['GET'])
+@api_view(http_method_names=["GET"])
 @ajax_login_required
 def company_simple_list(request):
     """
@@ -65,8 +64,6 @@ def company_simple_list(request):
     default_paginator = 10
     companies = get_companies_by_employees_num()
     companies_paginated = Paginator(companies, default_paginator).get_page(page_number)
-    return JsonResponse({
-        "companies": [
-            company.simple_to_dict_json() for company in companies_paginated.object_list
-        ]
-    })
+    return JsonResponse(
+        {"companies": [company.simple_to_dict_json() for company in companies_paginated.object_list]}
+    )

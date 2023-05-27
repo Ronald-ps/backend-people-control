@@ -2,6 +2,7 @@ from rest_framework import serializers
 from core.models import Company
 from core.utils.str_utils import extract_numbers
 
+
 class CompanySerializer(serializers.ModelSerializer):
     cnpj = serializers.CharField(max_length=14)
     cep = serializers.CharField(max_length=8)
@@ -30,8 +31,35 @@ class CompanySerializer(serializers.ModelSerializer):
         return cleaned_cep
 
     def validate_state_acronym(self, value):
-        valid_state_acronyms = ['AC', 'AL', 'AM', 'AP', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA', 'MG', 'MS', 'MT',
-                                'PA', 'PB', 'PE', 'PI', 'PR', 'RJ', 'RN', 'RO', 'RR', 'RS', 'SC', 'SE', 'SP', 'TO']
+        valid_state_acronyms = [
+            "AC",
+            "AL",
+            "AM",
+            "AP",
+            "BA",
+            "CE",
+            "DF",
+            "ES",
+            "GO",
+            "MA",
+            "MG",
+            "MS",
+            "MT",
+            "PA",
+            "PB",
+            "PE",
+            "PI",
+            "PR",
+            "RJ",
+            "RN",
+            "RO",
+            "RR",
+            "RS",
+            "SC",
+            "SE",
+            "SP",
+            "TO",
+        ]
 
         if value.upper() not in valid_state_acronyms:
             raise serializers.ValidationError("A sigla do estado não é válida.")
@@ -43,4 +71,4 @@ class CompanySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Company
-        fields = '__all__'
+        fields = "__all__"

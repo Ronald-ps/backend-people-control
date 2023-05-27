@@ -3,9 +3,11 @@ from model_bakery.baker import make
 
 from core.models import Company
 
+
 @pytest.fixture
 def activity_company(db):
     return make(Company, is_active=True)
+
 
 def test_query_all_without_exception(db):
     make(Company, is_active=False)

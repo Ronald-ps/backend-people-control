@@ -4,19 +4,21 @@
 # método .delete() seria como o padrão do django, não modificando o fluxo para trabalhar.
 from django.db import models
 
+
 class SoftDeleteQuerySet(models.QuerySet):
     """
-        Sobrescreve o comportamento padrão de deleção a partir de um QuerySet
+    Sobrescreve o comportamento padrão de deleção a partir de um QuerySet
     """
+
     def delete(self):
         self.update(is_active=False)
 
 
-
 class SoftDeleteManager(models.Manager):
     """
-        Manager para não retornar multas deletadas em consultas normais
+    Manager para não retornar multas deletadas em consultas normais
     """
+
     def get_queryset(self) -> SoftDeleteQuerySet:
         return SoftDeleteQuerySet(self.model, using=self._db).exclude(is_active=False)
 
@@ -26,20 +28,22 @@ class SoftDeleteManager(models.Manager):
 
 class SoftDeleteBaseModel(models.Model):
     """
-        Classe base abstrata para sobrescrever o comportamento de instance.delete().
+    Classe base abstrata para sobrescrever o comportamento de instance.delete().
 
-        Exemplos:
-            class MyModel(SoftDeleteModel):
-                pass
+    Exemplos:
+        class MyModel(SoftDeleteModel):
+            pass
 
-            >>> my_model = MyModel()
-            >>> my_model.delete()
-            >>> my_model.refresh_from_db()
-            >>> my_model.is_active
-            True
+        >>> my_model = MyModel()
+        >>> my_model.delete()
+        >>> my_model.refresh_from_db()
+        >>> my_model.is_active
+        True
     """
+
     class Meta:
         abstract = True
+
     objects = SoftDeleteManager()
     # field que checa se o modelo foi deletado ou não
     is_active = models.BooleanField(default=True, db_index=True)
@@ -49,7 +53,6 @@ class SoftDeleteBaseModel(models.Model):
         self.is_active = False
         self.save(update_fields=["is_active"])
         self._soft_delete_related_models(related_models=related_models)
-
 
     def _collect_relation_models(self):
         relation_models = []

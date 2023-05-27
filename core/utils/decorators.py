@@ -9,7 +9,9 @@ def ajax_login_required(view):
         if not request.user.is_authenticated:
             return HttpResponse(
                 {"message": "User not authenticated"},
-                content_type="application/json", status=HTTPStatus.UNAUTHORIZED
-              )
+                content_type="application/json",
+                status=HTTPStatus.UNAUTHORIZED,
+            )
         return view(request, *args, **kwargs)
+
     return wrapper

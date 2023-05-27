@@ -14,7 +14,8 @@ class CompanyViewSet(viewsets.ModelViewSet):
     This viewset automatically provides `list`, `create`, `retrieve`,
     `update` and `destroy` actions.
     """
-    queryset = Company.objects.all().prefetch_related('employees')
+
+    queryset = Company.objects.all().prefetch_related("employees")
     serializer_class = CompanySerializer
     permission_classes = [permissions.IsAuthenticated]
 
@@ -24,7 +25,8 @@ class DepartmentViewSet(viewsets.ModelViewSet):
     This viewset automatically provides `list`, `create`, `retrieve`,
     `update` and `destroy` actions.
     """
-    queryset = Department.objects.all().prefetch_related('employees')
+
+    queryset = Department.objects.all().prefetch_related("employees")
     serializer_class = DepartmentSerializer
     permission_classes = [permissions.IsAuthenticated]
 
@@ -34,9 +36,10 @@ class EmployeeViewSet(viewsets.ModelViewSet):
     This viewset automatically provides `list`, `create`, `retrieve`,
     `update` and `destroy` actions.
     """
+
     queryset = Employee.objects.all()
     serializer_class = EmployeeSerializer
     permission_classes = [permissions.IsAuthenticated]
     filter_backends = [OrderingFilter, DjangoFilterBackend]
     filterset_class = EmployeeFilter
-    ordering_fields = ['first_name', 'last_name', 'date_of_birth', 'date_of_entry']
+    ordering_fields = ["first_name", "last_name", "date_of_birth", "date_of_entry"]
