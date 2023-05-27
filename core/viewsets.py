@@ -11,8 +11,8 @@ from core.serializers.employee_serializer import EmployeeSerializer
 
 class CompanyViewSet(viewsets.ModelViewSet):
     """
-    This viewset automatically provides `list`, `create`, `retrieve`,
-    `update` and `destroy` actions.
+    View para ações de `list`, `create`, `retrieve`,
+    `update` and `destroy` para o modelo Company
     """
 
     queryset = Company.objects.all().prefetch_related("employees")
@@ -22,8 +22,8 @@ class CompanyViewSet(viewsets.ModelViewSet):
 
 class DepartmentViewSet(viewsets.ModelViewSet):
     """
-    This viewset automatically provides `list`, `create`, `retrieve`,
-    `update` and `destroy` actions.
+    View para ações de `list`, `create`, `retrieve`,
+    `update` and `destroy` para o modelo de Department
     """
 
     queryset = Department.objects.all().prefetch_related("employees")
@@ -33,8 +33,8 @@ class DepartmentViewSet(viewsets.ModelViewSet):
 
 class EmployeeViewSet(viewsets.ModelViewSet):
     """
-    This viewset automatically provides `list`, `create`, `retrieve`,
-    `update` and `destroy` actions.
+    View para ações de `list`, `create`, `retrieve`,
+    `update` and `destroy` para o modelo de Employee
     """
 
     queryset = Employee.objects.all()
