@@ -271,6 +271,9 @@ Para obter, basta fazer uma chamada para "/whoami", que é um endpoint que retor
 >> Alguns parâmetros de filtragem e ordenação podem ser passados para a api.
 >> Essa filtragem é baseada em [django-filters](https://django-filter.readthedocs.io/en/stable/)
 >> Para saber mais sobre como filtra, veja a [seção django-filters](#django-filters)
+>> mas esses segue um exemplo da estrutura de uma url para filtragem:
+>> http://localhost:8000/employees/?company__id=3&ordering=first_name&date_of_entry__gte=22%2F01%2F2022
+>> repare nos parâmetros company__id=3, ordering=first_name e date_of_entry__gte=22%2F01%2F2022
 >
 > Exemplos de retorno:
 ```json
@@ -363,9 +366,11 @@ Ao utilizar o Django Filters, você pode passar uma variedade de parâmetros na 
 - `in`: Filtra os registros onde o campo está entre uma lista de valores fornecidos.
 - `gt`: Filtra os registros onde o campo é maior que o valor fornecido.
 - `gte`: Filtra os registros onde o campo é maior ou igual ao valor fornecido.
+Ex: http://localhost:8000/employees/?date_of_entry__gte=22%2F01%2F2022
 - `lt`: Filtra os registros onde o campo é menor que o valor fornecido.
 - `lte`: Filtra os registros onde o campo é menor ou igual ao valor fornecido.
 - `startswith`: Filtra os registros onde o campo começa com o valor fornecido.
 - `istartswith`: Filtra os registros onde o campo começa com o valor fornecido, ignorando diferenças de maiúsculas e minúsculas.
 - `endswith`: Filtra os registros onde o campo termina com o valor fornecido.
 - `iendswith`: Filtra os registros onde o campo termina com o valor fornecido, ignorando diferenças de maiúsculas e minúsculas.
+- `isnull`: Filtra os registros onde o campo é nulo.
