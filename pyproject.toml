@@ -17,7 +17,6 @@ django-filter = "^23.2"
 
 
 [tool.poetry.group.dev.dependencies]
-ruff = "^0.0.269"
 black = "^23.3.0"
 model-bakery = "^1.11.0"
 pytest-django = "^4.5.2"
@@ -27,13 +26,10 @@ requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.black]
-line-length = 120
-extend-exclude = ["core/migrations"]
-
-[tool.ruff]
-line-length = 120
-extend-exclude = ["core/migrations"]
-target-version = "py311"
+line-length = 110
+extend-exclude = '''
+    core/migrations/
+'''
 
 [tool.pytest.ini_options]
 DJANGO_SETTINGS_MODULE = "people_control.settings"
