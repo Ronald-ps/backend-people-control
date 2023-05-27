@@ -8,7 +8,7 @@ from core.utils.soft_delete import SoftDeleteBaseModel
 # Normalmente, eu usaria TextField no lugar de Charfield, isso evita uma validação
 # A mais por parte do django. Mas eu achei melhor fazer tudo bonitinho por aqui
 class User(AbstractUser):
-    """Extend default auth User"""
+    """Extende usuário default do django"""
 
     def to_dict_json(self):
         return {
@@ -43,6 +43,7 @@ class Company(SoftDeleteBaseModel):
 
 
 class Department(SoftDeleteBaseModel):
+    """ Modelo para departamento de uma empresa """
     company = models.ForeignKey(Company, on_delete=models.CASCADE, related_name="departments")
     name = models.CharField(max_length=100)
     integration_code = models.CharField(max_length=100)
@@ -59,6 +60,8 @@ class Employee(SoftDeleteBaseModel):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     email = models.EmailField(unique=True)
+    # TODO: colocar um campo para o país do telefone aí, assim dá pra mascarar o número
+    # mesmo se eu normalizar ele no banco de dados
     phone = models.CharField(max_length=20)
     date_of_birth = models.DateField()
     date_of_entry = models.DateField()

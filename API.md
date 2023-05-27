@@ -115,8 +115,8 @@ Para obter, basta fazer uma chamada para "/whoami", que é um endpoint que retor
     "results": [
         {
             "id": 2,
-            "cnpj": "12.345.678/0001-99",
-            "cep": "12345-678",
+            "cnpj": "12345678000199",
+            "cep": "12345678",
             "state_acronym": "SP",
             "name": "Empresa ABC Ltda.",
             "employee_count": 100,
@@ -127,8 +127,8 @@ Para obter, basta fazer uma chamada para "/whoami", que é um endpoint que retor
         },
         {
             "id": 3,
-            "cnpj": "98.765.432/0001-01",
-            "cep": "54321-098",
+            "cnpj": "98765432000101",
+            "cep": "54321098",
             "state_acronym": "RJ",
             "name": "Indústria XYZ S/A",
             "employee_count": 500,
@@ -159,8 +159,8 @@ Para obter, basta fazer uma chamada para "/whoami", que é um endpoint que retor
 ```json
 {
     "id": 1,
-    "cnpj": "12.345.671/2345-67",
-    "cep": "12245-500",
+    "cnpj": "12345671234567",
+    "cep": "12245500",
     "state_acronym": "MG",
     "name": "Empresa ABC",
     "employee_count": 50,
@@ -288,7 +288,7 @@ Para obter, basta fazer uma chamada para "/whoami", que é um endpoint que retor
             "first_name": "John",
             "last_name": "Doe",
             "email": "john.doe@example.com",
-            "phone": "+55 123-456-7890",
+            "phone": "551234567890",
             "date_of_birth": "1990-01-01",
             "date_of_entry": "2021-01-01",
             "date_of_departure": "2022-12-31",
@@ -303,10 +303,10 @@ Para obter, basta fazer uma chamada para "/whoami", que é um endpoint que retor
             "first_name": "Jane",
             "last_name": "Smith",
             "email": "jane.smith@example.com",
-            "phone": "+1 987-654-3210",
-            "date_of_birth": "1985-05-10",
-            "date_of_entry": "2020-06-15",
-            "date_of_departure": "2023-01-15",
+            "phone": "19876543210",
+            "date_of_birth": "19850510",
+            "date_of_entry": "20200615",
+            "date_of_departure": "20230115",
             "city": "New York City"
         }
         ...
@@ -345,7 +345,7 @@ Para obter, basta fazer uma chamada para "/whoami", que é um endpoint que retor
     "first_name": "John",
     "last_name": "Doe",
     "email": "john.doe@example.com",
-    "phone": "+55 123-456-7890",
+    "phone": "551234567890",
     "date_of_birth": "1990-01-01",
     "date_of_entry": "2021-01-01",
     "date_of_departure": "2022-12-31",
