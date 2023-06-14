@@ -1,0 +1,21 @@
+name: Docker Compose Teste
+
+on:
+  push:
+    branches: [ construir-pipeline ]
+  pull_request:
+    branches: [ construir-pipeline ]
+
+jobs:
+  build-and-test:
+    timeout-minutes: 7
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build the Docker image
+      run: "[ -e .env ] || cp .env-example .env && docker compose --file $GITHUB_WORKSPACE/docker-compose.test.yaml build"
+
+    - name: Run tests
+      # docker compose run vai ser rapido porque as imagens já estão buildadas
+      run: "docker compose --file $GITHUB_WORKSPACE/docker-compose.test.yaml run django pytest ."
