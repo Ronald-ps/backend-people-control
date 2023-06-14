@@ -1,21 +1,3 @@
-# # Build pelo dockerfile
-# name: Docker Image CI
-
-# on:
-#   push:
-#     branches: [ construir-pipeline ]
-#   pull_request:
-#     branches: [ construir-pipeline ]
-
-# jobs:
-#   build:
-#     runs-on: ubuntu-latest
-#     steps:
-#     - uses: actions/checkout@v2
-#     - name: Build the Docker image
-#       run: docker build . -f Dockerfile -t backend-people-control-django
-
-# Teste para docker compose
 name: Docker Compose Teste
 
 on:
@@ -25,9 +7,14 @@ on:
     branches: [ construir-pipeline ]
 
 jobs:
-  build:
+  build-and-test:
+    timeout-minutes: 7
     runs-on: ubuntu-latest
+
     steps:
     - uses: actions/checkout@v2
     - name: Build the Docker image
-      run: "[ -e .env ] || cp .env-example .env && docker compose up -d --build && docker compose run django pytest ."
+      run: "[ -e .env ] || cp .env-example .env && docker compose build"
+
+    - name: Run tests
+      run: "docker compose run django pytest ."
