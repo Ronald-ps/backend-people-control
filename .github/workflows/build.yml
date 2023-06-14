@@ -17,4 +17,5 @@ jobs:
       run: "[ -e .env ] || cp .env-example .env && docker compose --file $GITHUB_WORKSPACE/docker-compose.test.yaml build"
 
     - name: Run tests
+      # docker compose run vai ser rapido porque as imagens já estão buildadas
       run: "docker compose --file $GITHUB_WORKSPACE/docker-compose.test.yaml run django pytest ."
