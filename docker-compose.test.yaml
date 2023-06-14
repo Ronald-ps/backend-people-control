@@ -1,0 +1,36 @@
+version: '3.4'
+
+services:
+  postgresql:
+    # https://hub.docker.com/_/postgres
+    image: postgres
+    env_file:
+      # o postgres nao vai levar em consideração a variável POSTGRES_PORT
+      - .env
+    ports:
+      - ${POSTGRES_PORT}:5432
+    volumes:
+      # Pasta de volume criada automaticamente pelo Docker
+      - postgres_data:/var/lib/postgresql/data
+
+  # Django
+  django:
+    image: django
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    environment:
+      # postgresql é a refência interna de host que o docker cria
+      POSTGRES_HOST: 'postgresql'
+      POSTGRES_PORT: "5432"
+      ENVIRONMENT: "development"
+    depends_on:
+      - postgresql
+    command: "sh -c 'python manage.py migrate'"
+
+volumes:
+  postgres_data:

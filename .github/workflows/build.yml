@@ -14,7 +14,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build the Docker image
-      run: "[ -e .env ] || cp .env-example .env && docker compose build"
+      run: "[ -e .env ] || cp .env-example .env && docker compose --file $GITHUB_WORKSPACE/docker-compose.test.yaml build"
 
     - name: Run tests
-      run: "docker compose run django pytest ."
+      run: "docker compose --file $GITHUB_WORKSPACE/docker-compose.test.yaml run django pytest ."
