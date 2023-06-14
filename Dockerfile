@@ -12,7 +12,7 @@ RUN apt-get update \
 		build-essential \
 		libpq-dev \
 		libgdal-dev \
-		python-dev \
+		python-dev-is-python3 \
 		wait-for-it \
 		postgresql-client \
 	&& rm -rf /var/lib/apt/lists/*
