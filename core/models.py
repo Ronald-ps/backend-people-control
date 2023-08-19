@@ -78,7 +78,6 @@ class CostCenter(SoftDeleteBaseModel):
 
     company = models.ForeignKey(Company, on_delete=models.CASCADE, related_name="cost_centers")
     department = models.ForeignKey(Department, on_delete=models.CASCADE, related_name="cost_centers")
-    # código de identificação do centro de custo
     code = models.CharField(max_length=10)
     description = models.TextField()
     budget = models.DecimalField(max_digits=10, decimal_places=2, default=D(0))

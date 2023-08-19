@@ -33,8 +33,6 @@ def login_view(request):
     if request.method != "POST":
         return HttpResponseNotAllowed(["POST"], "Method not allowed.")
 
-    # Eu poderia fazer isso com um serializer do django rest,
-    # mas aí eu não codaria nada poxa : !
     form = LoginRequestForm(request.body)
     if not form.is_valid():
         return HttpResponseBadRequest("Erro na validação, usuário ou senha mal formatados")
@@ -50,8 +48,6 @@ def login_view(request):
     return JsonResponse({"success": True, "message": "Login success.", "user_info": user.to_dict_json()})
 
 
-# Eu podia fazer isso com o drf, mas preferi usar um tiquin do padrão do
-# django, afinal, isso é um teste, neh?
 @api_view(http_method_names=["GET"])
 @ajax_login_required
 def company_simple_list(request):
